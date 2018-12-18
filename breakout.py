@@ -1,4 +1,4 @@
-import pygame, sys, brick, paddle
+import pygame, sys, brick, paddle, ball
 from pygame.locals import *
 
 def main():
@@ -34,6 +34,7 @@ def main():
     main_surface.fill(WHITE)
 
     bricks_group = pygame.sprite.Group()
+    paddle_group = pygame.sprite.Group()
     color_list = [RED, ORANGE, YELLOW, GREEN, CYAN]
 
     for a in range(10):
@@ -50,6 +51,11 @@ def main():
 
     my_paddle = paddle.Paddle(main_surface, BLACK, PADDLE_WIDTH, PADDLE_HEIGHT)
     my_paddle.rect.y = APPLICATION_HEIGHT - PADDLE_Y_OFFSET
+    paddle_group.add(my_paddle)
+
+    my_ball = ball.Ball(BLACK, APPLICATION_WIDTH, APPLICATION_HEIGHT, 20)
+    my_ball.rect.x = 200
+    my_ball.rect.y = 400
 
     while True:
             for event in pygame.event.get():
@@ -61,6 +67,9 @@ def main():
             position = pygame.mouse.get_pos()
             my_paddle.rect.x = position[0]
             main_surface.blit(my_paddle.image, my_paddle.rect)
+
+            my_ball.move()
+            main_surface.blit(my_ball.image, my_ball.rect)
 
             for x in bricks_group:
                 main_surface.blit(x.image, x.rect)
