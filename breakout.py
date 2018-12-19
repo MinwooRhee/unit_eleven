@@ -11,9 +11,11 @@ def main():
     BRICK_Y_OFFSET = 70
     BRICK_WIDTH = (APPLICATION_WIDTH - (BRICKS_PER_ROW - 1) * BRICK_SEP) / BRICKS_PER_ROW
     BRICK_HEIGHT = 8
-    PADDLE_WIDTH = 60
+    PADDLE_WIDTH = 1000
     PADDLE_HEIGHT = 10
-    RADIUS_OF_BALL = 10
+    RADIUS_OF_BALL = 100
+
+    # lives
     NUM_TURNS = 3
 
     # Sets up the colors
@@ -53,9 +55,9 @@ def main():
     my_paddle.rect.y = APPLICATION_HEIGHT - PADDLE_Y_OFFSET
     paddle_group.add(my_paddle)
 
-    my_ball = ball.Ball(BLACK, APPLICATION_WIDTH, APPLICATION_HEIGHT, 20)
-    my_ball.rect.x = 200
-    my_ball.rect.y = 400
+    my_ball = ball.Ball(BLACK, APPLICATION_WIDTH, APPLICATION_HEIGHT, RADIUS_OF_BALL)
+    my_ball.rect.x = APPLICATION_WIDTH/2
+    my_ball.rect.y = APPLICATION_HEIGHT/2
 
     while True:
             for event in pygame.event.get():
@@ -64,13 +66,19 @@ def main():
                     sys.exit()
 
             main_surface.fill(WHITE)
+
             position = pygame.mouse.get_pos()
-            my_paddle.rect.x = position[0]
+
+            # blit paddle
+            my_paddle.rect.x = position[0] - PADDLE_WIDTH/2
             main_surface.blit(my_paddle.image, my_paddle.rect)
 
+            # blit ball
             my_ball.move()
             main_surface.blit(my_ball.image, my_ball.rect)
+            my_ball.collide(bricks_group, paddle_group)
 
+            # blit bricks using for loop
             for x in bricks_group:
                 main_surface.blit(x.image, x.rect)
 
