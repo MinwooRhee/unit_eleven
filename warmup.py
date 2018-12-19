@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, random
 from pygame.locals import *
 import block
 
@@ -21,9 +21,9 @@ blocks_group = pygame.sprite.Group()
 color_list = [RED, BLUE, GREEN]
 
 for x in range(10):
-    new_block = block.Block(main_window, WIDTH, HEIGHT, color_list[x%3])
-    new_block.rect.x = WINDOW_WIDTH - 35 * x
-    new_block.rect.y = WINDOW_HEIGHT/2
+    new_block = block.Block(main_window, WIDTH, HEIGHT, color_list[x % 3])
+    new_block.rect.x = random.randint(WIDTH, WINDOW_WIDTH - WIDTH)
+    new_block.rect.y = random.randint(HEIGHT, WINDOW_HEIGHT - HEIGHT)
     blocks_group.add(new_block)
 
 main_window.fill(WHITE)
@@ -44,4 +44,3 @@ while True:
         main_window.blit(a_block.image, a_block.rect)
 
     pygame.display.update()
-
