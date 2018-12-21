@@ -11,9 +11,9 @@ def main():
     BRICK_Y_OFFSET = 70
     BRICK_WIDTH = (APPLICATION_WIDTH - (BRICKS_PER_ROW - 1) * BRICK_SEP) / BRICKS_PER_ROW
     BRICK_HEIGHT = 8
-    PADDLE_WIDTH = 1000
+    PADDLE_WIDTH = 100
     PADDLE_HEIGHT = 10
-    RADIUS_OF_BALL = 100
+    RADIUS_OF_BALL = 10
 
     # lives
     NUM_TURNS = 3
@@ -64,6 +64,14 @@ def main():
                 if event == QUIT:
                     pygame.quit()
                     sys.exit()
+
+            if my_ball.rect.bottom >= APPLICATION_HEIGHT:
+                my_ball.rect.x = APPLICATION_WIDTH / 2
+                my_ball.rect.y = APPLICATION_HEIGHT / 2
+                if NUM_TURNS == 0:
+                    break
+                else:
+                    NUM_TURNS -= 1
 
             main_surface.fill(WHITE)
 
