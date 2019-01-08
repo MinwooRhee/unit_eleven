@@ -1,4 +1,4 @@
-import pygame
+import pygame, math
 
 
 class Ball(pygame.sprite.Sprite):
@@ -11,7 +11,7 @@ class Ball(pygame.sprite.Sprite):
         self.windowWidth = windowWidth
         self.windowHeight = windowHeight
         self.radius = radius
-        self.x_speed = 3
+        self.x_speed = 0
         self.y_speed = 5
 
         # Create a surface, get the rect coordinates, fill the surface with a white color (or whatever color the
@@ -42,11 +42,8 @@ class Ball(pygame.sprite.Sprite):
             for paddle in paddle_group:
                 position = (self.rect.x - paddle.image.get_rect().x)
 
-            if position < 50:
-                    self.x_speed = self.x_speed - (50 - position)
-                    self.y_speed = - self.y_speed
+#  need work on paddle collision
 
-            else:
-                    self.x_speed = self.x_speed + (position % 50)
-                    self.y_speed = - self.y_speed
+            self.y_speed = - 6
+
 
