@@ -1,4 +1,4 @@
-import pygame, sys, brick, paddle, ball
+import pygame, sys, brick, paddle, ball, lives
 from pygame.locals import *
 
 def main():
@@ -16,7 +16,7 @@ def main():
     RADIUS_OF_BALL = 10
 
     # lives
-    NUM_TURNS = 3
+    NUM_TURNS = 2
 
     # Sets up the colors
     RED = (255, 0, 0)
@@ -64,6 +64,11 @@ def main():
                 if event == QUIT:
                     pygame.quit()
                     sys.exit()
+
+                if len(bricks_group) == 0:
+                    pygame.quit()
+                    sys.exit()
+
 
             if my_ball.rect.bottom >= APPLICATION_HEIGHT:
                 my_ball.rect.x = APPLICATION_WIDTH / 2

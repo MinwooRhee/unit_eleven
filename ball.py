@@ -39,11 +39,7 @@ class Ball(pygame.sprite.Sprite):
             self.x_speed = - self.x_speed
             self.y_speed = - self.y_speed
         if pygame.sprite.spritecollide(self, paddle_group, False):
-            for paddle in paddle_group:
-                position = (self.rect.x - paddle.image.get_rect().x)
-
-#  need work on paddle collision
-
-            self.y_speed = - 6
-
-
+            mouse = pygame.mouse.get_pos()
+            position = self.rect.x + self.radius - mouse[0]
+            self.x_speed = position/5
+            self.y_speed = - 30
