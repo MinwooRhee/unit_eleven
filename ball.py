@@ -1,4 +1,4 @@
-import pygame, math
+import pygame
 
 
 class Ball(pygame.sprite.Sprite):
@@ -36,10 +36,9 @@ class Ball(pygame.sprite.Sprite):
 
     def collide(self, bricks_group, paddle_group):
         if pygame.sprite.spritecollide(self, bricks_group, True):
-            self.x_speed = - self.x_speed
             self.y_speed = - self.y_speed
         if pygame.sprite.spritecollide(self, paddle_group, False):
             mouse = pygame.mouse.get_pos()
             position = self.rect.x + self.radius - mouse[0]
             self.x_speed = position/5
-            self.y_speed = - 30
+            self.y_speed = - abs(15 - abs(position/5))

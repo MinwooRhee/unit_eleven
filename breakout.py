@@ -1,4 +1,4 @@
-import pygame, sys, brick, paddle, ball, lives
+import pygame, sys, brick, paddle, ball
 from pygame.locals import *
 
 def main():
@@ -13,7 +13,7 @@ def main():
     BRICK_HEIGHT = 8
     PADDLE_WIDTH = 100
     PADDLE_HEIGHT = 10
-    RADIUS_OF_BALL = 10
+    RADIUS_OF_BALL = 12
 
     # lives
     NUM_TURNS = 2
