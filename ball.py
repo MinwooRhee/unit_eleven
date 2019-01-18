@@ -42,6 +42,7 @@ class Ball(pygame.sprite.Sprite):
         self.rect.x += self.x_speed
         self.rect.y += self.y_speed
 
+        # makes he ball bounce off the wall
         if self.rect.left <= 0 or self.rect.right >= self.windowWidth:
             self.x_speed = - self.x_speed
         if self.rect.top <= 0:
@@ -62,4 +63,5 @@ class Ball(pygame.sprite.Sprite):
             mouse = pygame.mouse.get_pos()
             position = self.rect.x + self.radius - mouse[0]  # position is a tupple
             self.x_speed = position/5
+            # y speed + x speed is always constant
             self.y_speed = - abs(self.abs_speed - abs(position/5))
